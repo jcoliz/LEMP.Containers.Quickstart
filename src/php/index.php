@@ -15,7 +15,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM contacts ORDER BY id DESC");
     </head>
 
     <body>
-        <table>
+       <table>
             <tr>
                 <th>Name</th>
                 <th>Age</th>

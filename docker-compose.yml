@@ -12,15 +12,20 @@ services:
   php:
     # Includes mysqli, which the built-in php:8-fpm does not have
     image: nanoninja/php-fpm:latest
+    environment:
+      MARIADB_HOST: db
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     volumes:
       - ./src/php:/var/www/html
   db:
     image: mariadb:10.6
     environment:
-      - MARIADB_ROOT_PASSWORD=development
-      - MARIADB_DATABASE=rolodex
-      - MARIADB_USER=dev
-      - MARIADB_PASSWORD=internal
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     ports:
       - '3306:3306'
     volumes:
@@ -31,8 +36,8 @@ services:
     ports:
       - '5002:80'
     environment:
-      - PMA_HOST=db
-      - PMA_USER=dev
-      - PMA_PASSWORD=internal
+      PMA_HOST: db
+      PMA_USER: ${MARIADB_USER}
+      PMA_PASSWORD: ${MARIADB_PASSWORD}
     depends_on:
       - db
