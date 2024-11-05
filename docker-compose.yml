@@ -10,7 +10,8 @@ services:
       - php
       - db
   php:
-    image: php:8-fpm
+    # Includes mysqli, which the built-in php:8-fpm does not have
+    image: nanoninja/php-fpm:latest
     volumes:
       - ./src/php:/var/www/html
   db:
@@ -24,6 +25,7 @@ services:
       - '3306:3306'
     volumes:
       - "./src/db/schema.sql:/docker-entrypoint-initdb.d/0.sql"
+      - "./src/db/seed.sql:/docker-entrypoint-initdb.d/1.sql"
   admin:
     image: phpmyadmin:latest
     ports:
@@ -34,4 +36,3 @@ services:
       - PMA_PASSWORD=internal
     depends_on:
       - db
-

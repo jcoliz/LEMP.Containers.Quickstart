@@ -1,0 +1,1 @@
+INSERT INTO `rolodex`.`contacts` (`id`, `name`, `age`, `email`) VALUES ('1', 'Test', '25', 'test@testing.com');
