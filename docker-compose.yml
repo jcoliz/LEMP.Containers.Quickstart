@@ -15,14 +15,13 @@ services:
       - db
   php:
     # Includes mysqli, which the built-in php:8-fpm does not have
-    image: nanoninja/php-fpm:latest
+    build:
+      dockerfile: ./docker/php/Dockerfile
     environment:
       MARIADB_HOST: db
       MARIADB_DATABASE: ${MARIADB_DATABASE}
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
-    volumes:
-      - ./src/php:/var/www/html
   db:
     image: mariadb:10.6
     environment:
