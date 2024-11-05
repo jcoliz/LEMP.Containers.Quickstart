@@ -4,13 +4,6 @@ include_once("config.php");
 
 // Fetch contacts (in descending order)
 $result = mysqli_query($mysqli, "SELECT * FROM contacts ORDER BY id DESC");
-/*
-    $db = new PDO('mysql:host=php;port=3306;dbname=rolodex', 'dev', 'internal');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-
-    $result = $db->query('SELECT * FROM contacts ORDER BY id DESC');
-    */
 ?>
 
 <!DOCTYPE html>
