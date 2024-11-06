@@ -1,20 +1,15 @@
 services:
   web:
-    image: nginx:latest
+    build:
+      dockerfile: ./docker/web/Dockerfile
     environment:
-      # https://stackoverflow.com/questions/56649582/substitute-environment-variables-in-nginx-config-from-docker-compose
       PHP_HOST: php
-      NGINX_ENVSUBST_TEMPLATE_SUFFIX: ".conf"
     ports:
       - '5001:80'
-    volumes:
-      - ./src/static:/var/www/html
-      - ./conf/nginx:/etc/nginx/templates
     depends_on:
       - php
       - db
   php:
-    # Includes mysqli, which the built-in php:8-fpm does not have
     build:
       dockerfile: ./docker/php/Dockerfile
     environment:
