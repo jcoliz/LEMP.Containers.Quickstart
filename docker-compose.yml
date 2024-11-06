@@ -1,6 +1,6 @@
 services:
   web:
-    image: ${DOCKER_LIBRARY}/${DOCKER_APPNAME}-web
+    image: ${DOCKER_LIBRARY}/${DOCKER_APPNAME}-web:${SOLUTION_VERSION}
     build:
       dockerfile: ./docker/web/Dockerfile
     environment:
@@ -11,7 +11,7 @@ services:
       - php
       - db
   php:
-    image: ${DOCKER_LIBRARY}/${DOCKER_APPNAME}-php
+    image: ${DOCKER_LIBRARY}/${DOCKER_APPNAME}-php:${SOLUTION_VERSION}
     build:
       dockerfile: ./docker/php/Dockerfile
     environment:
@@ -20,7 +20,7 @@ services:
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
   db:
-    image: ${DOCKER_LIBRARY}/${DOCKER_APPNAME}-db
+    image: ${DOCKER_LIBRARY}/${DOCKER_APPNAME}-db:${SOLUTION_VERSION}
     build:
       dockerfile: ./docker/db/Dockerfile
     environment:
