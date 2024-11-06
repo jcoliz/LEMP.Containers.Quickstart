@@ -18,7 +18,8 @@ services:
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
   db:
-    image: mariadb:10.6
+    build:
+      dockerfile: ./docker/db/Dockerfile
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
       MARIADB_DATABASE: ${MARIADB_DATABASE}
@@ -26,9 +27,6 @@ services:
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     ports:
       - '3306:3306'
-    volumes:
-      - "./src/db/schema.sql:/docker-entrypoint-initdb.d/0.sql"
-      - "./src/db/seed.sql:/docker-entrypoint-initdb.d/1.sql"
   admin:
     image: phpmyadmin:latest
     ports:
