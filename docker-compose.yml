@@ -10,6 +10,12 @@ services:
     depends_on:
       - php
       - db
+  hello:
+    image: ${DOCKER_LIBRARY}/${DOCKER_APPNAME}-hello:${SOLUTION_VERSION}
+    build:
+      dockerfile: ./docker/hello/Dockerfile
+    ports:
+      - '5003:80'
   php:
     image: ${DOCKER_LIBRARY}/${DOCKER_APPNAME}-php:${SOLUTION_VERSION}
     build:
